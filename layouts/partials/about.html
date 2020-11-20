@@ -1,0 +1,83 @@
+{{ $author := $.Site.Params.username }}
+{{ $author_page_path := (printf "/authors/%s" $author) }}
+{{ $author_page := site.GetPage $author_page_path }}
+{{ if not $author }}
+  {{ errorf "Could not find an author page at `%s`." $author_page_path }}
+{{end}}
+{{ $author_details := $author_page.Params }}
+
+<div class="row">
+    <div class="col-12 col-lg-4">
+        <div id="profile-summary">
+            {{ with $author_page.Resources.GetMatch "images/*" }}
+            {{ if . }}
+            <img src="{{ .RelPermalink }}" />
+            {{ else }}
+            <i class="fas fa-user"></i>
+            {{ end }}
+            {{ end }}
+            
+            <div class="profile-title">
+                <h2>{{ $author_details.name }}</h2>
+                {{ with $author_details.role }}<h3>{{ . | markdownify | emojify }}</h3>{{ end }}
+            </div>
+
+            {{ range $author_details.organizations }}
+            <h3>
+                {{ with .url }}<a href="{{ . }}" target="_blank" rel="noopener">{{ end}}
+                    <span>{{ .name }}</span>
+                {{ if .url }}</a>{{ end }}
+            </h3>
+            {{ end }}
+
+            <ul aria-hidden="true">
+                {{/* TODO: Might need to add logic for multi-language internal links here */}}
+                {{ range $author_details.social }}
+                <li>
+                    <a href="{{ .link }}" target="_blank" rel="noopener">
+                        <i class="{{ .icon_pack }} {{ .icon }}"></i>
+                    </a>
+                </li>
+                {{ end }}
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-12 col-lg-4">
+        <div id="profile-description">
+            <p>{{ $author_details.message }}</p>
+
+            <div class="row">
+
+                {{ with $author_details.interests }}
+                <div class="col-md-5">
+                    <h3>{{ i18n "interests" | markdownify }}</h3>
+                    <ul class="ul-interests">
+                        {{ range . }}
+                        <li>{{ . | markdownify | emojify }}</li>
+                        {{ end }}
+                    </ul>
+                </div>
+                {{ end }}
+
+                {{ with $author_details.education }}
+                <div class="col-md-7">
+                  <h3>{{ i18n "education" | markdownify }}</h3>
+                  <ul>
+                    {{ range .courses }}
+                    <li>
+                        <i class="fas fa-graduation-cap"></i>
+                        <div>
+                            <p>{{ .course }}{{ with .year }}, {{ . }}{{ end }}</p>
+                            <p>{{ .institution }}</p>
+                        </div>
+                    </li>
+                    {{ end }}
+                  </ul>
+                </div>
+                {{ end }}
+
+            </div>
+        </div>
+    </div>
+</div>

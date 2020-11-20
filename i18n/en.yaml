@@ -1,0 +1,12 @@
+### NAVBAR ###
+
+- id: home
+  translation: Home
+
+### ABOUT ###
+
+- id: interests
+  translation: Interests
+
+- id: education
+  translation: Education
