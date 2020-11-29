@@ -1,3 +1,3 @@
-$primary: "{{ $.Site.Params.design.primary_color }}";
+$primary: {{ $.Site.Params.design.primary_color }};
 
 @import "bootstrap/bootstrap";
