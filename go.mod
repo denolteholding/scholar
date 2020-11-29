@@ -1,4 +1,4 @@
-module denolteholding.github.io/scholar
+module github.com/denolteholding/scholar
 
 go 1.14
 
