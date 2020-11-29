@@ -4,7 +4,6 @@ The Hugo theme "Scholar" is my personal approach to providing a great theme for 
 
 ## Installation
 1. Install dependencies
-Install the following tools
     - Hugo (if not already installed)
     - Go (if not already installed)
 2. Create a new Hugo site and initialize git module
