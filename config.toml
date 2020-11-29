@@ -1,0 +1,3 @@
+[module]
+[[module.imports]]
+path = "github.com/gohugoio/hugo-mod-bootstrap-scss-v4"
