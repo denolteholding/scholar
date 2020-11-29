@@ -1,4 +1,4 @@
-{{ $author := $.Site.Params.username }}
+{{ $author := $.Site.Params.about.username }}
 {{ $author_page_path := (printf "/authors/%s" $author) }}
 {{ $author_page := site.GetPage $author_page_path }}
 {{ if not $author }}
