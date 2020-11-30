@@ -1,2 +1,4 @@
+github.com/denolteholding/hugo-mod-bootstrap-scss-js-v5 v0.0.0-20201130231609-8d233d4198c4 h1:9Z8BJh960AZ5eRxhFi0g7Vb/8pDFu3AtiU7UsKu7Fyo=
+github.com/denolteholding/hugo-mod-bootstrap-scss-js-v5 v0.0.0-20201130231609-8d233d4198c4/go.mod h1:QMAiosLFncFKVowAmfM9a9bfGGZXkaL//aHtfEYm3xI=
 github.com/twbs/bootstrap v5.0.0-alpha3+incompatible h1:7lOiPEq13Z4hIdlOKv21fSkMl5njI212SuGFbgrgGRk=
 github.com/twbs/bootstrap v5.0.0-alpha3+incompatible/go.mod h1:fZTSrkpSf0/HkL0IIJzvVspTt1r9zuf7XlZau8kpcY0=

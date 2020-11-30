@@ -1,11 +1,3 @@
 [module]
-[[module.mounts]]
-# Workaround for https://github.com/gohugoio/hugo/issues/6945, upstream https://github.com/golang/go/issues/37397
-# If bootstrap is updated via hugo mod get -u ..., then we need to update _rfs.scss as well
-source = "assets/scss/bootstrap/_vendor"
-target = "assets/scss/bootstrap/vendor"
 [[module.imports]]
-path="github.com/twbs/bootstrap"
-[[module.imports.mounts]]
-source = "scss"
-target = "assets/scss/bootstrap"
+path = "github.com/denolteholding/hugo-mod-bootstrap-scss-js-v5"
