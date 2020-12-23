@@ -1,0 +1,29 @@
+{
+  "name": "scholar",
+  "version": "1.0.0",
+  "description": "NPM package to keep track of npm dependencies for scholar Hugo theme",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://noltedennis@github.com/denolteholding/scholar.git"
+  },
+  "keywords": [
+    "scholar",
+    "hugo",
+    "theme"
+  ],
+  "author": "Dennis Nolte",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/denolteholding/scholar/issues"
+  },
+  "homepage": "https://github.com/denolteholding/scholar#readme",
+  "dependencies": {
+    "autoprefixer": "^10.1.0",
+    "postcss-cli": "^8.3.1",
+    "tailwindcss": "^2.0.2"
+  }
+}
