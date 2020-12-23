@@ -5,13 +5,13 @@
   {{ errorf "Could not find an author page at `%s`." $author_page_path }}
 {{end}}
 {{ $author_details := $author_page.Params }}
-<div class="container-lg">
+<div class="container">
     <div class="row">
         <div class="col-12 col-lg-4">
             <div class="w-50 p-3">
                 {{ with $author_page.Resources.GetMatch "images/*" }}
                 {{ if . }}
-                <img class="img-fluid rounded-circle" src="{{ .RelPermalink }}" />
+                <img class="rounded-full" src="{{ .RelPermalink }}" />
                 {{ else }}
                 <i class="fas fa-user"></i>
                 {{ end }}

@@ -1,1 +1,74 @@
-<h1 class="container mx-auto mt-5 text-3xl">Hello from the other side!</h1>
+<header class="bg-gray-100 flex items-center justify-evenly py-2">
+    <nav
+        class="w-full justify-start px-2"
+        x-data="{ isOpen: false }"
+        @keydown.escape="isOpen = false">
+        <button
+            type="button"
+            class="block lg:hidden text-gray-600"
+            :class="{ 'transition transform-180': isOpen }"
+            @click="isOpen = !isOpen">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div
+            class="w-full flex-grow lg:flex lg:items-center lg:w-auto"
+            :class="{ 'block shadow-3xl': isOpen, 'hidden': !isOpen }"
+            @click.away="isOpen = false"
+            x-show.transition="true">
+            <ul class="lg:flex">
+                {{ $currentPage := . }}
+                {{ range .Site.Menus.main }}
+                <li>
+                    <a class="pr-2 block border-transparent {{ if or (eq $currentPage.URL .URL) ($currentPage.HasMenuCurrent `main` .) }}text-black{{ end }}" href="{{ $.Site.BaseURL }}{{ .URL }}">{{ .Name }}</a>
+                </li>
+                {{ end }}
+            </ul>
+        </div>    
+    </nav>
+
+    <a href="{{ .Site.BaseURL | relLangURL }}" class="flex-none mx-auto">
+        <img src="{{ .Site.Params.logo | absURL }}" alt="site-logo">
+    </a>
+
+    {{ if .Site.IsMultiLingual }}
+    {{ range .Site.Languages }}
+    {{ if eq . $.Site.Language }}
+    <div
+        class="w-full justify-end"
+        x-data="{ open: false }">
+        <div
+            @click.away="open = false"
+            class="flex w-full justify-end">
+            <button
+                @click="open = !open"
+                class="text-gray-600 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline pl-2 pr-2 mr-1 py-1">
+                <i class="fas fa-globe" aria-hidden="true"></i>
+                <span class="hidden lg:inline lg:pl-1">{{ .LanguageName }}<i class="fas fa-caret-down pl-2" aria-hidden="true"></i></span>
+            </button>
+            {{ end }}
+            {{ end }}
+
+            <div
+                x-show="open"
+                x-transition:enter="transition ease-out duration-100"
+                x-transition:enter-start="transform opacity-0 scale-95"
+                x-transition:enter-end="transform opacity-100 scale-100"
+                x-transition:leave="transition ease-in duration-75"
+                x-transition:leave-start="transform opacity-100 scale-100"
+                x-transition:leave-end="transform opacity-0 scale-95"
+                class="absolute right-1 w-full mt-6 origin-top-right md:w-48">
+
+                <div class="px-2 py-2 bg-gray-50">
+                    {{ range $.Translations }}
+                    <a
+                        class="block px-2 py-2 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none"
+                        href="{{ .Permalink }}">
+                        {{ .Language.LanguageName }}
+                    </a>
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+        {{ end }}
+    </div>
+</header>
