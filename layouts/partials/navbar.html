@@ -1,43 +1,42 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a href="{{ .Site.BaseURL | relLangURL }}" class="navbar-brand">
-        <img src="{{ .Site.Params.logo | absURL }}" alt="site-logo">
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <div class="container-fluid">
+        <a href="{{ .Site.BaseURL | relLangURL }}" class="navbar-brand">
+            <img src="{{ .Site.Params.logo | absURL }}" alt="site-logo">
+        </a>
 
-    <div class="collapse navbar-collapse" id="mainNavbar">
-        <ul class="navbar-nav ml-auto">
-            {{ range .Site.Menus.main }}
-            <li class="nav-item"><a class="nav-link" href="{{ $.Site.BaseURL }}{{ .URL }}">{{ .Name }}</a></li>
-            {{ end }}
-        </ul>
-    </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav ms-auto">
+                {{ range .Site.Menus.main }}
+                <li class="nav-item"><a class="nav-link" href="{{ $.Site.BaseURL }}{{ .URL }}">{{ .Name }}</a></li>
+                {{ end }}
 
-    {{ if .Site.IsMultiLingual }}
-    <ul class="navbar-nav flex-row ml-auto d-flex pl-md-2">
-        <li class="nav-item dropdown">
-            {{ range .Site.Languages }}
-            {{ if eq . $.Site.Language }}
-            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
-                <i class="fas fa-globe mr-1" aria-hidden="true"></i>
-                <span class="d-none d-lg-inline">{{ .LanguageName }}</span>
-            </a>
-            <div class="dropdown-menu">
-                <div class="dropdown-item active">
-                    <span>{{ .LanguageName }}</span>
-                </div>
+                {{ if .Site.IsMultiLingual }}
+                <li class="nav-item dropdown">
+                    {{ range .Site.Languages }}
+                    {{ if eq . $.Site.Language }}
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-globe" aria-hidden="true"></i>
+                        <span class="d-none d-lg-inline">{{ .LanguageName }}</span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-item active">
+                            <span>{{ .LanguageName }}</span>
+                        </div>
+                        {{ end }}
+                        {{ end }}
             
-            {{ end }}
-            {{ end }}
-
-            {{ range $.Translations }}
-            <a class="dropdown-item" href="{{ .Permalink }}" data-target="{{ .RelPermalink }}">
-                <span>{{ .Language.LanguageName }}</span>
-            </a>
-            {{ end }}
-            </div>
-        </li>
-    </ul>
-    {{ end }}
+                        {{ range $.Translations }}
+                        <a class="dropdown-item" href="{{ .Permalink }}" data-bs-target="{{ .RelPermalink }}" aria-labelledby="navbarDropdown">
+                            <span>{{ .Language.LanguageName }}</span>
+                        </a>
+                        {{ end }}
+                    </ul>
+                </li>
+                {{ end }}
+            </ul>
+        </div>
+    </div>
 </nav>
