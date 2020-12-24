@@ -1,11 +1,11 @@
-<header class="bg-gray-100 flex items-center justify-evenly py-2">
+<header class="bg-gray-100 flex justify-evenly py-2">
     <nav
-        class="w-full justify-start px-2"
+        class="w-full justify-start px-2 py-1"
         x-data="{ isOpen: false }"
         @keydown.escape="isOpen = false">
         <button
             type="button"
-            class="block lg:hidden text-gray-600"
+            class="block lg:hidden text-gray-600 mb-1 lg:mb-0"
             :class="{ 'transition transform-180': isOpen }"
             @click="isOpen = !isOpen">
             <i class="fas fa-bars"></i>
@@ -19,14 +19,14 @@
                 {{ $currentPage := . }}
                 {{ range .Site.Menus.main }}
                 <li>
-                    <a class="pr-2 block border-transparent {{ if or (eq $currentPage.URL .URL) ($currentPage.HasMenuCurrent `main` .) }}text-black{{ end }}" href="{{ $.Site.BaseURL }}{{ .URL }}">{{ .Name }}</a>
+                    <a class="pr-2 py-1 lg:py-0 block border-transparent {{ if or (eq $currentPage.URL .URL) ($currentPage.HasMenuCurrent `main` .) }}text-black{{ end }}" href="{{ $.Site.BaseURL }}{{ .URL }}">{{ .Name }}</a>
                 </li>
                 {{ end }}
             </ul>
         </div>    
     </nav>
 
-    <a href="{{ .Site.BaseURL | relLangURL }}" class="flex-none mx-auto">
+    <a href="{{ .Site.BaseURL | relLangURL }}" class="flex-none mx-auto align-top">
         <img src="{{ .Site.Params.logo | absURL }}" alt="site-logo">
     </a>
 
