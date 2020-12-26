@@ -1,29 +1,24 @@
 {
-  "name": "scholar",
-  "version": "1.0.0",
-  "description": "NPM package to keep track of npm dependencies for scholar Hugo theme",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://noltedennis@github.com/denolteholding/scholar.git"
-  },
-  "keywords": [
-    "scholar",
-    "hugo",
-    "theme"
-  ],
-  "author": "Dennis Nolte",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/denolteholding/scholar/issues"
-  },
-  "homepage": "https://github.com/denolteholding/scholar#readme",
-  "dependencies": {
-    "autoprefixer": "^10.1.0",
-    "postcss-cli": "^8.3.1",
-    "tailwindcss": "^2.0.2"
+ "comments": {
+  "dependencies": {},
+  "devDependencies": {
+   "@tailwindcss/typography": "project",
+   "autoprefixer": "project",
+   "postcss": "project",
+   "postcss-cli": "project",
+   "postcss-purgecss": "project",
+   "tailwindcss": "project"
   }
+ },
+ "dependencies": {},
+ "devDependencies": {
+  "@tailwindcss/typography": "^0.2.0",
+  "autoprefixer": "~9.7.6",
+  "postcss": "^8.0.9",
+  "postcss-cli": "^8.0.0",
+  "postcss-purgecss": "^2.0.3",
+  "tailwindcss": "^1.8.10"
+ },
+ "name": "scholar",
+ "version": "0.1.0"
 }

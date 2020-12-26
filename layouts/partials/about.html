@@ -5,80 +5,80 @@
   {{ errorf "Could not find an author page at `%s`." $author_page_path }}
 {{end}}
 {{ $author_details := $author_page.Params }}
-<div class="container">
-    <div class="row">
-        <div class="col-12 col-lg-4">
-            <div class="w-50 p-3">
-                {{ with $author_page.Resources.GetMatch "images/*" }}
-                {{ if . }}
-                <img class="rounded-full" src="{{ .RelPermalink }}" />
-                {{ else }}
-                <i class="fas fa-user"></i>
-                {{ end }}
-                {{ end }}
+<section>
+    <div class="lg:container px-6 py-6">
+        <div class="flex flex-wrap">
+            <div class="w-full lg:w-1/2">
+                <div class="w-1/3 mx-auto">
+                    {{ with $author_page.Resources.GetMatch "images/*" }}
+                    {{ if . }}
+                    <img class="rounded-full object-fill" src="{{ .RelPermalink }}" />
+                    {{ else }}
+                    <i class="fas fa-user"></i>
+                    {{ end }}
+                    {{ end }}
+                </div>
             </div>
-            
-            <div class="profile-title">
-                <h2>{{ $author_details.name }}</h2>
-                {{ with $author_details.role }}<h3>{{ . | markdownify | emojify }}</h3>{{ end }}
+            <div class="w-full lg:w-1/2 justify-between">
+                <div class="text-6xl text-denolte text-left">“</div>
+                <p class="text-sm text-gray-600 text-center px-5">{{ $author_details.message }}</p>
+                <div class="text-6xl text-denolte text-right">”</div>
             </div>
-
-            {{ range $author_details.organizations }}
-            <h3>
-                {{ with .url }}<a href="{{ . }}" target="_blank" rel="noopener">{{ end}}
-                    <span>{{ .name }}</span>
-                {{ if .url }}</a>{{ end }}
-            </h3>
-            {{ end }}
-
-            <ul class="list-inline" aria-hidden="true">
-                {{/* TODO: Might need to add logic for multi-language internal links here */}}
-                {{ range $author_details.social }}
-                <li class="list-inline-item">
-                    <a href="{{ .link }}" target="_blank" rel="noopener">
-                        <i class="{{ .icon_pack }} {{ .icon }}"></i>
-                    </a>
-                </li>
-                {{ end }}
-            </ul>
-        </div>
-
-        <div class="col-12 col-lg-4">
-            <div class="">
-                <p>{{ $author_details.message }}</p>
-
-                <div class="row">
-
+            <div class="w-full lg:w-1/2">
+                <div class="mx-auto text-center py-4">
+                    <h2 class="text-lg">{{ $author_details.name }}</h2>
+                    {{ with $author_details.role }}<h3>{{ . | markdownify | emojify }}</h3>{{ end }}
+                    {{ range $author_details.organizations }}
+                    <h3>
+                        {{ with .url }}<a href="{{ . }}" target="_blank" rel="noopener">{{ end}}
+                            <span>{{ .name }}</span>
+                        {{ if .url }}</a>{{ end }}
+                    </h3>
+                    {{ end }}
+                </div>
+        
+                <ul class="mx-auto text-center text-denolte" aria-hidden="true">
+                    {{/* TODO: Might need to add logic for multi-language internal links here */}}
+                    {{ range $author_details.social }}
+                    <li class="inline-block">
+                        <a href="{{ .link }}" target="_blank" rel="noopener">
+                            <i class="{{ .icon_pack }} {{ .icon }}"></i>
+                        </a>
+                    </li>
+                    {{ end }}
+                </ul>
+            </div>
+            <div class="w-full lg:w-1/2">
+                <div class="flex flex-wrap py-4">
                     {{ with $author_details.interests }}
-                    <div class="col-md-5">
+                    <div class="w-full lg:w-1/2">
                         <h3>{{ i18n "interests" | markdownify }}</h3>
-                        <ul class="ul-interests">
+                        <ul class="">
                             {{ range . }}
                             <li>{{ . | markdownify | emojify }}</li>
                             {{ end }}
                         </ul>
                     </div>
                     {{ end }}
-
+    
                     {{ with $author_details.education }}
-                    <div class="col-md-7">
-                    <h3>{{ i18n "education" | markdownify }}</h3>
-                    <ul class="fa-ul">
-                        {{ range .courses }}
-                        <li>
-                            <span class="fa-li"><i class="fas fa-graduation-cap"></i></span>
-                            <div>
-                                <p>{{ .course }}{{ with .year }}, {{ . }}{{ end }}</p>
-                                <p>{{ .institution }}</p>
-                            </div>
-                        </li>
-                        {{ end }}
-                    </ul>
+                    <div class="w-full lg:w-1/2">
+                        <h3>{{ i18n "education" | markdownify }}</h3>
+                        <ul class="fa-ul">
+                            {{ range .courses }}
+                            <li>
+                                <span class="fa-li"><i class="fas fa-graduation-cap"></i></span>
+                                <div>
+                                    <p>{{ .course }}{{ with .year }}, {{ . }}{{ end }}</p>
+                                    <p>{{ .institution }}</p>
+                                </div>
+                            </li>
+                            {{ end }}
+                        </ul>
                     </div>
                     {{ end }}
-
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
